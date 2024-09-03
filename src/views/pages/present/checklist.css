@@ -1,0 +1,86 @@
+.drc-container {
+    position: absolute;
+    background: #341A5A;
+    color: #E8C48F;
+    padding: 10px 10px 10px 5px;
+    width: 162px;
+    height: 44px;
+    top: 20px;
+    right: 20px;
+    z-index: 500;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.drc-head {
+    line-height: 1.5;
+    position: relative;
+    cursor: pointer;
+}
+
+.drc-text {
+    width: 80px;
+    text-wrap: nowrap;
+    position: absolute;
+    font-weight: 800;
+    overflow: hidden;
+    left: 10px;
+}
+
+.drc-checks {
+    padding-left: 5px;
+    background: #341A5A;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 10px;
+}
+
+.drc-body {
+    position: relative;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.drc-content {
+    overflow: hidden;
+    border: 1px solid #E8C48F;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    position: absolute;
+    padding-top: 15px;
+    width: calc(100% - 20px);
+    top: 10px;
+}
+
+.drc-footer {
+    padding: 5px 10px 5px 10px;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.drc-footer > span {
+    cursor: pointer;
+}
+
+.hover-icon {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.hover-icon:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.drop-down {
+    width: 20px;
+    height: 20px;
+    background: #E8C48F;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-right: -8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

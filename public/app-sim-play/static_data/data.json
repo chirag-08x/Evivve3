@@ -1,0 +1,54 @@
+{
+  "OFFERS": [
+    {
+      "harvest": "plain",
+      "quantity": 1,
+      "credits": 300,
+      "index": 5,
+      "decline": 0,
+      "status": "pending",
+      "weeks": 5,
+      "expiryTime": 17
+    },
+    {
+      "harvest": "forest",
+      "quantity": 1,
+      "credits": 300,
+      "index": 5,
+      "decline": 0,
+      "status": "pending",
+      "weeks": 5,
+      "expiryTime": 17
+    },
+    {
+      "harvest": "lake",
+      "quantity": 1,
+      "credits": 300,
+      "index": 5,
+      "decline": 0,
+      "status": "pending",
+      "weeks": 5,
+      "expiryTime": 17
+    },
+    {
+      "harvest": "earth",
+      "quantity": 1,
+      "credits": 300,
+      "index": 5,
+      "decline": 0,
+      "status": "pending",
+      "weeks": 5,
+      "expiryTime": 17
+    },
+    {
+      "harvest": "farm",
+      "quantity": 1,
+      "credits": 300,
+      "index": 5,
+      "decline": 0,
+      "status": "pending",
+      "weeks": 5,
+      "expiryTime": 17
+    }
+  ]
+}

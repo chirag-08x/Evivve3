@@ -1,0 +1,2099 @@
+<html>
+
+<head>
+
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width;" />
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+    img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+    style-src  'self' 'unsafe-inline' *">
+
+    <title>Evivve - Simulation</title>
+    <meta name="description" content="A leadership and workplace collaboration skill development game. "/>
+    <meta name="keywords" content="facilitation, game, game based learning, learning, elearning, gamification, learning, games for learning, collaboration training, training game, games for collaboration, leadership game">
+    <meta name="author" content="Gamitar Learning">
+    <meta name="twitter:card" content= "summary_large_image"/>
+    <meta name="twitter:title" content="Evivve - The Leadership Game" />
+    <meta name="twitter:description" content="Evivve - The Leadership Game. Behavioral science, cognitive capacity and game design"/>
+    <meta name="twitter:image" content="summary_large_image"/>
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
+
+    <link href="css/android_toast.min.css" rel="stylesheet">
+
+<!--    Clarity init-->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "nex99fgs3o");
+    </script>
+
+    <script type="text/javascript" src="js/socket.io.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/interactions.js"></script>
+    <script type="text/javascript" src="js/android_toast.min.js"></script>
+    <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+    <script>
+        $('document').ready(() => {
+            const searchParams = new URLSearchParams(window.location.search);
+            if(searchParams.get("redirect") === "game"){
+                onClickLetsGod();
+            }
+            if(searchParams.get("redirect") === "about"){
+                document.getElementsByClassName("lets_go_and_try")[0].innerHTML = "Try It Now"
+            }
+        })
+    </script>
+    <style>
+        .switch_landscape {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @media screen and (orientation:portrait) {
+            #container {
+                display: none;
+            }
+        }
+
+        @media screen and (orientation:landscape) {
+            #container {
+                display: block;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            .switch_landscape {
+                display: none;
+            }
+        }
+    </style>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i)
+            {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-PZPT8TB');</script>
+    <!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZPT8TB" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="switch_landscape">
+        <img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/switch-orientation.png"
+            style="height: 100%; width: 100%;" alt="switch landscape" />
+    </div>
+    <div id="container">
+        <div id="boostModal" class="modal" style="display: none">
+            <div class="modal-content" style="width:30%;">
+                <p style="color: black;text-align: center;">Need a Boost?</p>
+                <p style="color: black;text-align: center;font-size: 13px;">Want us to fund your account with 200 cronos
+                    so you can continue? </p>
+
+
+                <center>
+
+                    <div class="purchase" style="height: 40px;width: 340;margin-top: 20px;">
+                        <div class="table">
+                            <div class="cell" style="color: black;font-size: 13px;" id="boost_modal_yes_btn">
+                                YES PLEASE
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="height: 1px;background-color: black;margin-top: 20px;">
+
+                    <div class="purchase" style="height: 40px;width: 340;margin-top: 20px;">
+                        <div class="table">
+                            <div class="cell" style="color: black;font-size: 13px;" id="leadership_lesson_btn">
+                                Leadership Lessons
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="purchase" style="height: 40px;width: 340;margin-top: 20px;font-size: 20px;">
+                        <div class="table">
+                            <div class="cell" onclick="window.location.href = 'facilitation.html';"
+                                style="color: black;font-size: 13px;">
+
+                                Try Evivve as a Facilitator
+                            </div>
+                        </div>
+
+                    </div>
+                </center>
+            </div>
+        </div>
+
+        <div id="confirmModal" class="modal" style="display: none">
+            <div class="modal-content" style="width: fit-content">
+                <p style="color: black;text-align: center;"><b>Are you sure?</b></p>
+                <p style="color:black;text-align: center;">A new page will open up and take you to a sign up form where
+                    you can join the next live game session</p>
+                <br />
+
+                <div style="display: flex;justify-content: center;">
+                    <div style="display:inline-block">
+                        <div class="purchase" style="height: 30px;width: 110;margin-top: 20px;">
+                            <div class="table">
+                                <div class="cell" style="color: black" id="no_btn">
+                                    NO
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="purchase" style="height: 30px;width: 110;margin-top: 20px;">
+                            <div class="table">
+                                <div class="cell" style="color: black" id="yes_btn">
+                                    YES
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="lessonsModal" class="modal" style="display: none;">
+            <div class="modal-content" style="width:40%">
+                <div id="onClickLessonForward">
+
+                    <div style="margin-top: 10px;color: black;float:right;">
+                        <img src="./images/arrow.png" width="30px" />
+                    </div>
+                </div>
+                <p style="margin-top: 70px;color: black;text-align: center; font-size: larger;"><b>Leadership
+                        Lessons</b></p>
+                <br />
+                <ul style="color: black;">
+                    <li>
+                        You just had the experience of one out of many players in a typical Evivve game. Players can
+                        compete, collaborate and evolve in their ways of working with each other.
+                    </li>
+                    <br />
+
+                    <li>
+                        This creates an urgent need to:
+                        <br>Communicate and Collaborate (lower cognitive functions)
+                        <br>Decide, Manage, Problem-Solve, Align, Strategize and Synthesize (higher cognitive functions)
+                    </li>
+                    <br />
+
+                    <li>
+                        Therefore, players learn through the practice of these cognitive capabilities. When they fail a
+                        round of Evivve, they have the opportunity to reflect and identify changes they would make in
+                        future games.
+                    </li>
+                    <br />
+
+                    <li>
+                        When they play again, they are able to experiment with new behaviors and see their impact.
+                    </li>
+
+                </ul>
+
+
+                <div class="purchase" style="height: 40px;width: 340;margin-top: 20px;font-size: 20px;">
+                    <div class="table">
+                        <div class="cell" onclick="window.location.href = 'facilitation.html';" style="color: black">
+
+                            Try Evivve as a Facilitator
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="lessonsModal2" class="modal" style="display: none;">
+            <div class="modal-content" style="width:40%">
+                <div style="display: flex;justify-content: space-between;">
+                    <div id="onClickLessonBack">
+                        <img src="./images/arrow.png" width="30px" style="rotate:180deg;margin-bottom:10" />
+                    </div>
+                    <div id="onClickLessonForward2">
+
+                        <center style="color: black;">
+                            <img src="./images/arrow.png" width="30px" />
+                        </center>
+                    </div>
+                </div>
+                <h4 style="color: black;text-align: center;">
+                    Key Game Elements
+                </h4>
+                <p style="color: black; text-align: center;">These elements influence how players interact with each
+                    other in the game</p>
+                <br />
+                <ul style="color: black;">
+                    <li>
+                        Offers: When one player accepts an offer it goes away for everyone. This inherently causes other
+                        players to compete.
+                    </li>
+                    <br />
+
+                    <li>
+                        Matching Resources: Players must match the right resource with the offer. To do this they must
+                        communicate and collaborate on common objectives.
+
+                    </li>
+                    <br />
+
+                    <li>
+                        Movilennium: "Evolution" in the game is entirely dependent on MV. As players play, they must not
+                        lose sight of their most important goal.
+
+                    </li>
+                    <br />
+
+                    <li>
+                        Dashboard: In the multiplayer game, a dashboard displays team's performance data which can be
+                        used to inform decisions.
+
+
+                    </li>
+                    <br />
+
+                </ul>
+
+
+
+                <div class="purchase" style="height: 40px;width: 340;margin-top: 20px;font-size: 20px;">
+                    <div class="table">
+                        <div class="cell" onclick="window.location.href = 'facilitation.html';" style="color: black">
+
+                            Try Evivve as a Facilitator
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="lessonsModal3" class="modal" style="display: none;">
+            <div class="modal-content" style="width:40%">
+                <div id="onClickLessonBack3">
+                    <img src="./images/arrow.png" width="30px" style="rotate:180deg;margin-bottom:10" />
+                </div>
+                <center style="color: black;font-size: 18px;">
+                    Want to use Evivve for programs you're designing?
+                </center>
+
+                <div class="purchaseCopy" style="height: 20px;width: 200;margin-top: 20px;">
+                    <div class="table">
+                        <div class="cell" style="color: black;font-size: 13px;padding-top: 7px;" id="facilitate">
+                            Sign Up Now
+                        </div>
+                    </div>
+                </div>
+
+                <div class="purchaseCopy" style="height: 20px;width: 200;margin-top: 20px;">
+                    <div class="table">
+                        <div class="cell" style="color: black;font-size: 13px;padding-top: 7px;" id="rfp_now">
+                            Try Evivve as a Facilitator
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div id="harvestedMovilennium" class="modal" style="display: none;">
+            <div class="modal-content" style="width:75%">
+                <p style="color: black; text-align: center; font-size: larger;">
+                    🎉Congratulations!🎉 <br>You have Mined a Movilennium!
+                </p>
+
+                <p style="color: black;">
+                    <br><br> You've learnt how to play Evivve in single player mode but the real challenge of
+                    Evivve is playing it in a multiplayer environment because every person tries to accept and
+                    fulfill the offers and thereby forgets to align with one another towards the big picture
+                    goals of the game.
+                    <br><br>Take a look at the leadership lessons that are typically derived from the multiplayer
+                    game:
+                </p>
+                <br />
+                <center style="margin-top: 10px;display: flex;">
+
+                    <div class="purchase" style="height: 40px;width: 200;margin-top: 20px;">
+                        <div class="table">
+                            <div class="cell" style="color: black;font-size: 15px;" id="leadership_lesson_btn2">
+                                Leadership Lessons
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="purchase" style="height: 40px;width: 200;margin-top: 20px;">
+                        <div class="table">
+                            <div class="cell" style="color: black;font-size: 15px;" id="play_evive">
+                                Play Multiplayer Evivve
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </center>
+            </div>
+        </div>
+
+        <div id="harvestCompleted" class="modal" style="display: none;z-index: 1000;">
+            <div class="modal-content" style="width:45%">
+                <p style="color: black;text-align: center;">Level 2: Cleared! <br> Your harvest is now in progress.
+                    Meanwhile, let's learn how to Trade resources and earn cronos.
+                    <br><br> <b style="font-size: x-large;">Level 3: Accept an Offer</b>
+                </p>
+                <br />
+
+                <div class="purchase" style="height: 40px;width: 100;margin-top: 20px;">
+                    <div class="table">
+                        <div class="cell" style="color: black" id="harvest_progess_ok_btn">
+                            OK
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="harvestModal" class="modal" style="display: none;">
+            <div class="modal-content" style="width:45%">
+                <p style="color: black; text-align: center;">Level 1: Cleared!</p>
+                <br />
+                <p style="color: black; text-align: center;"><b style="font-size: x-large;">Level 2: Harvest Your
+                        Land</b></p>
+                <div class="purchase" style="height: 40px;width: 100;margin-top: 20px;">
+                    <div class="table">
+                        <div class="cell" style="color: black" onclick="onClickOk2()" id="lets_go">
+                            OK
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="mainGameModal" class="modal" style="display: none;">
+            <div class="modal-content" style="width:45%; overflow-y: scroll;height:28vh;">
+                <p style="color: black; text-align: center;">To help you learn how to play, we'll give you mini-game
+                    tasks here. These game tasks are
+                    broken into levels to help you progress quickly
+                    <br><br> <b style="font-size: x-large;">Level 1: Buy Lands</b>
+                    <br><br> Note: After you click OK, the mini-game task will be minimized to the bottom right of your
+                    screen
+                </p>
+
+                <div class="purchase" style="height: 40px;width: 100;margin-top: 20px;">
+                    <div class="table">
+                        <div class="cell" style="color: black" onclick="onClickOk()" id="lets_go">
+                            OK
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div id="closeGameConfirmModal" class="modal" style="display: none;background: rgba(0,0,0,0.7); z-index: 1000;">
+            <div class="modal-content" style="width:40%;padding: 10px;height: 140px;">
+                <p style="color: black;text-align: center;font-size: x-large;">
+                    Are you sure you want to close single player mode?
+                </p>
+
+                <div class="purchase" style="height: 50px;width: 48%;margin-top: 25px;float: right;margin-left: 15px;">
+                    <div class="table">
+                        <div class="cell" style="color: black" onclick="window.webJS.onConfirmGameClose()">
+                            Yes
+                        </div>
+                    </div>
+                </div>
+                <div class="purchase" style="height: 50px;width: 46%;margin-top: 25px;float: right;">
+                    <div class="table">
+                        <div class="cell" style="color: red" onclick="window.webJS.onCancelGameClose()">
+                            No
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <!-- <div id="role" class="modal" style="display: block; text-align: center; top:10vh">
+            <div class="modal-content"
+                style="width: 30%;background-color: rgb(255, 253, 226,0.8);border-radius: 20px; overflow-y: scroll;height: fit-content; left: 0px; position:relative; font-family:Helvetica !important">
+                <br />
+                <div style="color: black;text-align: center;font-size:x-large; left: 8px; position:relative;">Select the role you want to play:</div>
+                <br><br>
+
+                <div style="display: flex;">
+
+                    <div class="purchase" style="height: 40px;width: 200;margin-top: 0px;">
+                        <div class="table">
+                            <div class="cell" style="color: black; padding-top: 5px;"
+                                onclick="document.getElementById('role').style.display='none';document.getElementById('letsGoModal').style.display='block'"
+                                id="lets_go">
+                                <b>Player</b>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="purchase" style="height: 40px;width: 200;margin-top: 0px; left: 17px; position: relative;">
+                        <div class="table">
+                            <div class="cell"
+                                style="color: black; padding-top: 5px;"
+                                onclick="window.location.href = 'facilitation.html';">
+                                <b>Facilitator</b>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+
+
+        <div id="letsGoModal" class="modal" style="display: block; text-align: center; overflow-y: auto;">
+            <div class="close-game-modal-button font-16">
+                <div class="tile-close-game-div" style="width: 4rem;height: 4rem;"></div>
+            </div>
+            <div class="modal-content"
+                style="width: 60%;background-color: rgb(255, 253, 226,0.8);border-radius: 20px; overflow-y: scroll;height: 60vh;">
+                <p style="color: black; font-size: larger;"><b style="font-size: x-large;">What is Evivve</b><br><br>
+                    Evivve is a multiplayer game that is best experienced with other
+                    real players. This is a simulated version of the game which is designed to give you an idea of what
+                    the experience might
+                    be like. <br><br>The simulated game experience is expected to take about 15 minutes to play through.
+                    At the end of the
+                    experience you'll have the opportunity to explore the leadership lessons that can be learnt through
+                    the game. </p>
+                <br />
+                <div style="color: black;text-align: center;font-size:x-large;">Ready? Let's get started!</div>
+                <br><br>
+
+                <div class="purchase" style="height: 40px;width: 200;margin-top: 20px;">
+                    <div class="table">
+                        <div class="cell lets_go_and_try" style="color: black" onclick="onClickLetsGod()" id="lets_go">
+                            Let's go
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div style="display: none;" id="game_body">
+            <div class="tile-close-game-back font-16">
+                <div class="tile-close-game-div" style="width: 2.5rem;height: 2.5rem;"></div>
+            </div>
+            <div class="tooltip_box">
+                <span class="tooltiptext" style="color: black">Wait for an offer to come up on the screen</span>
+            </div>
+            <div id="main_tooltip" style="display: none;">
+                <div class="tooltip_left">
+                    <span class="tooltiptext" style="color: black"></span>
+                </div>
+
+                <div class="tooltip_bottom">
+                    <span class="tooltiptext" style="color: black">Touch here to open the map</span>
+                </div>
+
+                <div class="right_tooltip">
+                    <span class="tooltiptext" style="color: black">Touch any one of the orange nodes to select a cluster
+                        of
+                        lands <br />Note: You'll be purchasing an intersection of multiple lands
+                    </span>
+                </div>
+
+                <div class="view_offer_tooltip" style="display: none;">
+                    <span class="tooltiptext" style="color: black">Touch any one of the orange nodes to select a cluster
+                        of
+                        lands <br />Note: You'll be purchasing an intersection of multiple lands
+                    </span>
+                </div>
+
+
+            </div>
+            <!-- transform: rotate(45deg); -->
+            <img id="hand" src="./images/arrow.gif" style="position:absolute;top:55%;z-index:1;width: 150px;display: none;
+    left: 10%;" />
+            <div id="step_2" style="display: none">
+
+                <video autoplay muted style="width: 100%; height: 100%;" playsinline id="myVideo">
+                    <source src="https://d3cyxgc836sqrt.cloudfront.net/videos/Evivve_Logo_Animation.mp4"
+                        type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+            <div class="myHarvestListPopup" id="myHarvestListPopup" style="display: none">
+                <div style="position: relative; top:20%">
+                    <center>
+                        <img style="height: 10%;object-fit: cover;" src="./images/bluepurple-evivve-logo.png"
+                            alt="Application Logo">
+
+                        <div id="step_3" style="display: none">
+                            <h3 style="width: 600px;margin-top: 40px;">In this version of the game, you'll be playing
+                                with
+                                simulated players who will respond to you based on how you play. Your goal is to work
+                                with
+                                these
+                                AI players to get 1 Movilennium in your account. </h3>
+
+                            <div onclick="handleLetsGoBtn2()" id="initiate-btn lets-go-btn" class=""
+                                style="width: 30%; height: 10%;margin-top: 20px;">
+                                <div>
+                                    <div class="btn-initiate" style="cursor: pointer">
+                                        Let's go
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step_1">
+                            <h2 style="margin-top:10px">Welcome to Evivve</h2>
+                            <h3 style="width: 600px;margin-top: 40px;">Evivve is a multiplayer game which is best
+                                experienced
+                                with other real players.
+                                This is a simulated version of
+                                the game to give you an idea of what the experience might be like</h3>
+
+                            <h1 style="margin-top: 40px">Ready? Let's get started! </h1>
+                            <div onclick="handleLetsGoBtn()" id="initiate-btn lets-go-btn" class=""
+                                style="width: 30%; height: 10%;margin-top: 20px;">
+
+
+                                <div>
+                                    <div class="btn-initiate" style="cursor: pointer">
+                                        Let's go
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+
+                </div>
+            </div>
+
+            <div id="main" class="main" style="display: flex">
+                <div style="width: 100%">
+                    <div class="sidenav" style="display: none; background-color:0f0f00; opacity: 70%;">
+                        <img id="close" class="close"
+                            src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/close.png" height="38"
+                            align="right">
+                        <br><br><br><br>
+                        <a onclick="cordova.InAppBrowser.open('https://www.gamitar.com/moglevivve', '_system', 'location=yes')"
+                            target="_blank" href="www.evivve.com"><img class="float-left"
+                                src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/aboutevivve.png"
+                                height="4%">
+                            &nbsp;About Evivve</a>
+                        <a onclick="cordova.InAppBrowser.open('https://www.gamitar.com/mogl-evivve-certification', '_system', 'location=yes')"
+                            target="_blank" href="https://www.gamitar.com/mogl-evivve-certification"><img
+                                class="float-left"
+                                src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/certify.png" height="4%">
+                            &nbsp;Get
+                            Certified</a>
+                        <a onclick="cordova.InAppBrowser.open('https://vimeo.com/324128378', '_system', 'location=yes')"
+                            target="_blank" href="https://vimeo.com/324128378"><img class="float-left"
+                                src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/apply.PNG" height="4%">
+                            &nbsp;How
+                            to
+                            Play</a>
+                        <a onclick="cordova.InAppBrowser.open('https://share.hsforms.com/1SdR_7NNfQM6BOTfINjXksg47ybq', '_system', 'location=yes')"
+                            target="_blank" href="https://share.hsforms.com/1SdR_7NNfQM6BOTfINjXksg47ybq"><img
+                                class="float-left"
+                                src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/controller.png"
+                                height="3%">
+                            &nbsp;Join a Game</a>
+                        <div style="margin-top:40px">
+                            <div class="button" style="width: 100%; height: 10%; margin-bottom: 2%;">
+                                <div class="table">
+                                    <div class="cell font-16" id="refresh">
+                                        Restart App
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <img id="rightArrow" class="rightArrow" src="images/arrow.png"> -->
+
+                    <div class="counterScale" style="display:none">
+                        <div class="counterScale-overlay">
+                            <div class="left-div table">
+                            </div>
+                            <div class="right-div table">
+                                <div class="cell">
+                                    <div style="height: 35%">
+                                        <div class="table">
+                                            <div class="cell">
+                                                <div class="font-18 counterScale-cntdwn-txt"> BRACE FOR <br> IMPACT IN
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="height: 20%">
+                                        <div class="font-40  counterScale-cntdwn" style="color: white"
+                                            id="card-board-counter">
+                                            1
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="_backdrop" style="display: none">
+                        <!-- <video style="width: 100%;" autoplay playsinline id="_calamity_video"> -->
+                        <video style="width: 100%;" webkit-playsinline playsinline autoplay muted id="_calamity_video">
+                            <source src="">
+                            </source>
+                        </video>
+                    </div>
+
+                    <div class="overlay">
+                        <div class="iframe-close"> <span>X</span> </div>
+                        <iframe id="demo_iframe" width="98%" height="98%"
+                            style="position: absolute; z-index: 9;top: 1%; left:1%;" src="https://gamitar.com"></iframe>
+                    </div>
+
+                    <!-- <div class="homepage" id="options" style="color: white;" align="center">
+
+            <div class="introbox game-login-container">
+                <img style="height: 10%; margin-top:-8%;"
+                    src="./images/bluepurple-evivve-logo.png"
+                    alt="Application Logo">
+
+                <div style="position:relative; height: 15%;">
+                    <div>
+                        <input placeholder="Enter App Code" class="font-16 input-text" type="number" id="st_code"
+                            style="width: 20%">
+                        <input placeholder="Enter your name" class="font-16 input-text" type="text" id="txt_name"
+                            style="width: 20%">
+
+                    </div>
+                </div>
+                <div style="width: 30%; height: 2px; background: #463ea7; margin-bottom: 2%;"></div>
+                <div id="initiate-btn" class="" style="width: 30%; height: 10%; margin-bottom: 2%;">
+                    <div>
+                        <div class="btn-initiate play">
+                            Initiate
+                            <img src="./images/loading.gif"
+                                id="play-loading"
+                                style="display: none;height: 2rem;position: absolute;right: 10%;top: 26%;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="button" style="width: 30%; height: 10%; margin-bottom: 2%; display:none">
+                    <div class="table">
+                        <div class="cell font-16" id="resources-iframe">
+                            Demo
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="homepage" id="loadingScreen" style="display: block;color: white; position: absolute;top:0;left:0"
+            align="center">
+            <div>
+                <img style="opacity: 0.7; height: 43%; margin-top:5%;"
+                    src="./images/white-evivve-logo.png"
+                    alt="App Logo">
+            </div>
+            <div style="margin-top: 10px;">
+                <h2 class="spinning">
+                    Getting Ready, Please Wait...
+                </h2>
+            </div>
+        </div> -->
+                    <div class="page" id="youtubeVideos" style="display: block">
+                        <div id="game_set_screen" class="page" style="display: none;color: white">
+                            <div id="please_wait" style="display: block">
+                                <div class="table">
+                                    <div class="cell" style="background-color: #000F58; opacity: 50%;">
+                                        <h2 style="text-align: center;vertical-align: center">Please wait while other
+                                            players
+                                            join
+                                            the game</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div id="login_form" style="display: none" align="center">
+                    <div style="height: 10%"></div>
+                    <div class="submit_name">
+                        <div class="font-16"> Tribe Name :
+                            <span id="room_name"></span>
+                        </div>
+                        <div style="height: 25%"></div>
+                        <div class="float-left" style="width: 35%;margin-left: 20%">
+                        </div>
+                        <div class="float-left" style="width: 2%">
+                            &nbsp;
+                        </div>
+                        <div class="float-left" style="width: 30%">
+                            <input type="button" style="color: white" id="btn-join" class="button" value="Join Tribe">
+                        </div>
+                    </div>
+                </div> -->
+                        </div>
+
+                        <div id="start_screen" class="page" style="display: none">
+                            <!-- <span class="skip font-18" onclick="onPressSkip()">Skip</span> -->
+                            <!-- <span class="timer font-16" id="timer">60</span> -->
+                            <div class="tile-back back font-16"><span class="tile-back-span">x</span>
+                            </div>
+                            <div class="map-legend">
+                                <img src="./images/legend.png" />
+                            </div>
+                            <div class="map" id="map">
+                                <img src="images/landselection.png">
+
+                                <div class="pin-container" id="pin-container">
+
+                                </div>
+                            </div>
+                            <span class="remaining_credits font-16">Remaining Cronos - <span
+                                    id="remaining_credits"></span></span>
+                            <div class="buyPopup" style="display: none">
+                                <div class="table">
+                                    <div class="cell">
+                                        <div class="outer">
+                                            <div class="table">
+                                                <div class="cell">
+                                                    <div class="inner">
+                                                        <div class="header-menu">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="closeButton">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="game_screen" class="page" style="display: block">
+                            <div class="offerPopup" style="display: none">
+
+                                <div class="leftDiv float-left">
+
+                                    <img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/new_chief.gif"
+                                        width="100%"
+                                        style="display: block;height: 90%;width: auto;position: absolute;bottom: 10vh;left: 0vw;border-bottom: 20px;">
+
+                                </div>
+                                <div class="rightDiv float-left">
+                                    <div class="table">
+                                        <div class="cell">
+                                            <!--<div style="background: red">-->
+                                            <div class="outer float-left" style="width: 95%">
+                                                <div class="table">
+                                                    <div class="cell">
+                                                        <div class="inner">
+                                                            <div class="header-menu-offer">
+                                                                <div style="height: 5%"></div>
+                                                                <div class="tooltip_offer_left" id="tooltip_offer_left"
+                                                                    style="display: block">
+                                                                    <span class="tooltiptext" style="color: black">
+                                                                        Everyone gets the same offer at the same time.
+                                                                        If no
+                                                                        one
+                                                                        accepts the offer, it will stay on the screen
+                                                                        indefinitely
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="offerMsg font-16"></div>
+                                                                <div style="height: 5%">
+                                                                </div>
+
+                                                                <div class="button_container">
+
+                                                                    <div id="accept_btn_tooltip">
+                                                                        <div class="right_tooltip"
+                                                                            id="accept_offer_tooltip">
+                                                                            <span class="tooltiptext"
+                                                                                style="color: black">
+                                                                                Touch "ACCEPT" to accept the offer. In a
+                                                                                multiplayer game,
+                                                                                only one person from your team can
+                                                                                accept an offer at one
+                                                                                time
+                                                                            </span>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="offerPopupButton acceptOffer font-12">
+                                                                        <div class="button"
+                                                                            style="font-size: 2vw;width: 100%;height: 100%;position: relative;bottom: 0.9vw;left: 2vw;">
+                                                                            <div class="table">
+                                                                                <div class="cell">
+                                                                                    ACCEPT
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="offerPopupButton declineOffer font-12">
+                                                                        <div class="button"
+                                                                            style="font-size: 2vw;width: 100%;height: 100%;position: relative;bottom: 0.7vw;left: 2vw;">
+                                                                            <div class="table">
+                                                                                <div class="cell">
+                                                                                    DECLINE
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- <div class="offerPopupButton myOffer font-12">
+                                                            <div class="button"
+                                                                style="font-size: 2vw;width: 100%;height: 100%;position: relative;bottom: 0.7vw;left: 3.4vw;">
+                                                                <div class="table">
+                                                                    <div class="cell">
+                                                                        INVENTORY
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                                    <!--<div class="offerPopupButton laterOffer">-->
+                                                                    <!--<div class="button" style="background: #7D6C1C;">-->
+                                                                    <!--<div class="table">-->
+                                                                    <!--<div class="cell">-->
+                                                                    <!--LATER-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+
+                                                                    <div class="clear"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--<div class="closeButton">-->
+
+                                <!--</div>-->
+                            </div>
+                            <div class="offerListPopup" style="display: none">
+                                <div class="table">
+                                    <div class="cell">
+                                        <div class="outer">
+                                            <div class="table">
+                                                <div class="cell"
+                                                    style="background-image: url('images/offerpanel.png');background-repeat: no-repeat; background-size: 100% 100%;">
+                                                    <div class="inner" style="height: 77%;">
+                                                        <div class="header font-14">
+                                                            <div class="table float-left" style="width: 20%;">
+                                                                <div class="cell">
+                                                                    Item
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 20%">
+                                                                <div class="cell">
+                                                                    Original Time
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 20%">
+                                                                <div class="cell">
+                                                                    Reward
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 20%">
+                                                                <div class="cell">
+                                                                    Time Left
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 18%">
+                                                                <div class="cell">
+                                                                    Status
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <!-- <hr /> -->
+                                                        <div class="tooltip_accepted_offer_box">
+                                                            <span class="tooltiptext" style="color: black">Accepted
+                                                                offers
+                                                                show up here. You will need to have the respective
+                                                                resource
+                                                                in
+                                                                your inventory to be able to deliver the offer. </span>
+                                                        </div>
+                                                        <div class="content font-12" id="offerLists">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="closeButton">
+
+                                </div>
+                            </div>
+                            <div class="tradeListPopup" style="display: none">
+                                <div class="table">
+                                    <div class="cell">
+                                        <div class="outer">
+                                            <div class="table">
+                                                <div class="cell">
+                                                    <div class="inner">
+                                                        <div class="header font-18">
+                                                            <div class="table">
+                                                                <div class="cell">
+                                                                    Trade
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="content font-16">
+                                                            <div style="height: 7%"></div>
+                                                            <div style="height: 40%" id="trade-offer-text">Keyur Wants
+                                                                to
+                                                                trade
+                                                                fish
+                                                                with you for 10 CR</div>
+                                                            <div style="height: 7%"></div>
+                                                            <div style="height: 14%">
+                                                                <div class="font-13" align="center">
+                                                                    <div class="button"
+                                                                        style="background: #2E681B; width: 30%"
+                                                                        id="go-to-trade">
+                                                                        <div class="table">
+                                                                            <div class="cell">
+                                                                                GO TO TRADE
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="closeButton">
+
+                                </div>
+                            </div>
+                            <div class="myHarvestListPopup" style="display: none" id="myHarvests">
+                                <div class="table">
+                                    <div class="cell">
+                                        <div class="outer">
+                                            <div class="table">
+                                                <div class="cell">
+                                                    <div class="inner" style="overflow-y: auto">
+                                                        <div class="header">
+                                                            <div class="table float-left" style="width: 33.33%">
+                                                                <div class="cell">
+                                                                    Resource
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 33.33%">
+                                                                <div class="cell">
+                                                                    Harvest Qty
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 33.33%">
+                                                                <div class="cell">
+                                                                    Expires In
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                            <hr />
+                                                        </div>
+                                                        <div class="content font-14" id="myHarvestdata">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="closeButton">
+
+                                </div>
+                            </div>
+                            <div class="skill_levelPopup" style="display: none">
+                                <div class="table">
+                                    <div class="cell">
+                                        <div class="outer">
+                                            <div class="table">
+                                                <div class="cell">
+                                                    <div class="inner" style="height: 77%;width:91%;">
+                                                        <div class="header font-16">
+                                                            <div class="table float-left" style="width: 33.33%">
+                                                                <div class="cell">
+                                                                    Skill Level
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 33.33%">
+                                                                <div class="cell">
+                                                                    Cost
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 33.33%">
+                                                                <div class="cell">
+                                                                    Harvest Time
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="content font-14">
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        1
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        -
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        5 WEEKS
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        2
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        2 DELIVERIES TO CHIEF
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        4 WEEKS
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        3
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        + 3 DELIVERIES TO CHIEF
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        3 WEEKS
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        4
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        + 4 DELIVERIES TO CHIEF
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        2 WEEKS
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        5
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        + 5 DELIVERIES TO CHIEF
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 33.33%">
+                                                                    <div class="cell">
+                                                                        1 WEEK
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="closeButton" style="top: 2%;">
+
+                                </div>
+                            </div>
+                            <div class="dev_pointsPopup" style="display: none" data-model>
+                                <div class="table">
+                                    <div class="cell">
+                                        <div class="outer">
+                                            <div class="table">
+                                                <div class="cell">
+                                                    <div class="inner" style="width: 91%;height: 77%;">
+                                                        <div class="header font-14">
+                                                            <div class="table float-left" style="width: 20%">
+                                                                <div class="cell">
+                                                                    DEV POINTS
+                                                                </div>
+                                                            </div>
+                                                            <div class="table float-left" style="width: 80%">
+                                                                <div class="cell">
+                                                                    DESCRIPTION
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="content font-12">
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 20%">
+                                                                    <div class="cell">
+                                                                        2
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 80%">
+                                                                    <div class="cell">
+                                                                        REVIVE LAND FROM A 2-WEEK NATURAL DISASTER
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 20%">
+                                                                    <div class="cell">
+                                                                        4
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 80%">
+                                                                    <div class="cell">
+                                                                        REVIVE LAND FROM A 4-WEEK NATURAL DISASTER
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 20%">
+                                                                    <div class="cell">
+                                                                        6
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 80%">
+                                                                    <div class="cell">
+                                                                        REVIVE LAND FROM AN 8-WEEK NATURAL DISASTER
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="section-container">
+                                                                <div class="table float-left" style="width: 20%">
+                                                                    <div class="cell">
+                                                                        5
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table float-left" style="width: 80%">
+                                                                    <div class="cell">
+                                                                        UPGRADE LAND - INCREASE HARVEST YIELD BY 1
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="closeButton" style="top:2%;">
+
+                                </div>
+                            </div>
+
+                            <div class="chiefPopup" style="display: none">
+
+                                <div class="leftDiv float-left">
+
+                                    <img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/new_chief.gif"
+                                        width="100%"
+                                        style="display: block;height: 85%;width: auto;position: absolute;bottom: 9vh;left: 3.2vw;border-bottom: 20px;" />
+
+                                </div>
+                                <div class="rightDiv float-left">
+                                    <div class="table">
+                                        <div class="cell">
+                                            <!--<div style="background: red">-->
+                                            <div class="outer float-left" style="width: 100%">
+                                                <div class="table">
+                                                    <div class="cell">
+                                                        <div class="inner">
+                                                            <div class="header-menu-offer">
+                                                                <div style="height: 5%"></div>
+                                                                <div class="headerText font-18">CHIEF</div>
+                                                                <hr>
+                                                                <div style="height: 5%"></div>
+                                                                <div class="chiefMsg font-16">Congratulations you have
+                                                                    received
+                                                                    gift
+                                                                    of 1 dev points from the chief</div>
+                                                                <div style="height: 5%"></div>
+                                                                <div style="height: 25%;width: 100%;">
+                                                                    <div class="chiefPopupButton acceptOffer font-12">
+                                                                        <div class="button">
+                                                                            <div class="table" id="chiefPopupButton">
+                                                                                <div class="cell">
+                                                                                    CLOSE
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--<div class="offerPopupButton laterOffer">-->
+                                                                    <!--<div class="button" style="background: #7D6C1C;">-->
+                                                                    <!--<div class="table">-->
+                                                                    <!--<div class="cell">-->
+                                                                    <!--LATER-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+                                                                    <div class="clear"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="closeButton">-->
+
+                                <!--</div>-->
+                            </div>
+                            <div class="bountyPopup" style="display: none">
+                                <div class="leftDiv float-left">
+                                    <img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/new_bountyhunter.gif"
+                                        width="100%"
+                                        style="display: block;height: 90%;width: auto;position: absolute;bottom: 9.75vh;left: 0vw;border-bottom: 20px;">
+                                </div>
+                                <div class="rightDiv float-left">
+                                    <div class="table">
+                                        <div class="cell">
+                                            <!--<div style="background: red">-->
+                                            <div class="outer float-left" style="width: 100%">
+                                                <div class="table">
+                                                    <div class="cell">
+                                                        <div class="inner">
+                                                            <div class="header-menu-offer">
+                                                                <div style="height: 0%"></div>
+                                                                <div class="headerText font-18">BOUNTY HUNTER SAYS:
+                                                                </div>
+                                                                <!-- <div style="height: 2%"></div> -->
+                                                                <div class="bountyMsg font-12">
+                                                                    Hey, I've had my eye on you for a while. I want to
+                                                                    run
+                                                                    an
+                                                                    opportunity by
+                                                                    you.
+                                                                    <br>
+                                                                    Basically, I have a connection that gives me access
+                                                                    to
+                                                                    an
+                                                                    alteration for
+                                                                    two people - me and possibly you? But It'll cost 2
+                                                                    Movilenniums.
+                                                                    How about we
+                                                                    work together? If you can get me 2 Movilenniums I
+                                                                    can
+                                                                    get
+                                                                    you
+                                                                    out of this rat race.
+                                                                    <br><br>
+                                                                    We can skip the line and evolve!
+                                                                </div>
+                                                                <!-- <div style="height: 8%"></div> -->
+                                                                <div style="height: 15%;width: 100%;">
+                                                                    <div class="bountyPopupButton font-12 submitBounty">
+                                                                        <div class="button">
+                                                                            <div class="table">
+                                                                                <div class="cell"
+                                                                                    style="padding-bottom: 10px">
+                                                                                    SUBMIT NOW
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="bountyPopupButton font-12 submitBountyLater">
+                                                                        <div class="button">
+                                                                            <div class="table">
+                                                                                <div class="cell"
+                                                                                    style="padding-bottom: 10px">
+                                                                                    LATER
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--<div class="offerPopupButton laterOffer">-->
+                                                                    <!--<div class="button" style="background: #7D6C1C;">-->
+                                                                    <!--<div class="table">-->
+                                                                    <!--<div class="cell">-->
+                                                                    <!--LATER-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+                                                                    <!--</div>-->
+
+                                                                    <div class="clear"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--<div class="closeButton">-->
+
+                                <!--</div>-->
+                            </div>
+                            <div class="gameOverpopup" style="display: none">
+                                <div class="rightDiv" style="width: 100%">
+                                    <div class="table">
+                                        <div class="cell">
+                                            <div class="outer">
+                                                <div class="table">
+                                                    <div class="cell">
+                                                        <div class="inner">
+                                                            <div class="header-menu-offer">
+                                                                <div class="table">
+                                                                    <div class="cell" id="gameOvermsg">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--<div class="closeButton">-->
+
+                                <!--</div>-->
+                            </div>
+                            <!--<div style="height: 1%"></div>-->
+                            <!--<div class="divider"></div>-->
+                            <div class="header">
+                                <div class="cloud-container">
+                                    <div id="cloud1" class="cloud1">
+
+                                    </div>
+                                    <div id="cloud2" class="cloud2">
+
+                                    </div>
+                                    <div id="cloud3" class="cloud3">
+
+                                    </div>
+                                </div>
+                                <div style="height: 2.5%; width: 100%"></div>
+                                <div class="header-container">
+                                    <div class="table">
+                                        <div class="cell">
+                                            <div class="skill_level float-left" popup-model="skill_levelPopup"
+                                                style=" margin: 1%;height: 100%; width:22.5%; vertical-align:middle; background-image:url('images/skilllevel.png'); background-repeat: no-repeat; background-size: 100%;">
+                                                <div class="dark-box-left float-left">
+                                                    <div class="cell font-14">
+                                                        <!-- Skill Level -->
+                                                    </div>
+                                                </div>
+                                                <div class="dark-box float-left">
+                                                    <div class="dark-box-inner" style="height: 90%">
+                                                        <div class="cell font-18 number-container" id="skill_level">
+                                                            1
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="development_level float-left" popup-model="dev_pointsPopup"
+                                                style="height: 100%; width:22.5%; vertical-align:middle; background-image:url('images/devpbar.png'); background-repeat: no-repeat; background-size: 100%;">
+                                                <div class="dark-box-left float-left">
+                                                    <div class="cell font-14">
+                                                        <!-- Dev Points -->
+                                                    </div>
+                                                </div>
+                                                <div class="dark-box float-left">
+                                                    <div class="dark-box-inner" style="height: 90%">
+                                                        <div class="cell font-18 number-container" id="dp">
+                                                            0
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div onclick="window.keyurJS.handleOnClickMovellenium()" class="mv_level float-left"
+                                                style="height: 100%; width:22.5%; vertical-align:middle; background-image:url('images/mv.png'); background-repeat: no-repeat; background-size: 100%;">
+                                                <div class="dark-box-left float-left">
+                                                    <div class="cell font-14">
+                                                        <!-- MV -->
+                                                    </div>
+                                                </div>
+                                                <div class="dark-box float-left">
+                                                    <div class="dark-box-inner" style="height: 90%">
+                                                        <div class="cell font-18 number-container" id="mv">
+                                                            0
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div onclick="window.keyurJS.handleOnClickCronos()" class="development_level float-left"
+                                                style="height: 100%; width:22.5%; vertical-align:middle; background-image:url('./images/cronos.png'); background-repeat: no-repeat; background-size: 100%;">
+                                                <div class="dark-box-left float-left">
+                                                    <div class="cell font-14">
+                                                        <!-- Cronos -->
+                                                    </div>
+                                                </div>
+                                                <div class="dark-box float-left">
+                                                    <div class="dark-box-inner"
+                                                        style="height: 90%;margin-left: 9%;width: 78%;">
+                                                        <div class="cell font-18 number-container" id="credits">
+                                                            200
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="top: 70%;width:310px;position: absolute;z-index: 1;">
+                                                    <div id="top_right_note" style="display: none;">You have earned
+                                                        money by completing your delivery for an offer</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="height: 2%; width: 100%"></div>
+                                <div class="header-container">
+                                    <div class="table">
+                                        <div class="cell" style="display: flex; align-items: center;">
+                                            <div class="skill_level float-left offers"
+                                                style="margin-top: 0.4%; width: 20vw;height: 12vh;/* vertical-align:middle; */ background-image:url('images/offers.png'); background-repeat: no-repeat; background-size: 100% 100%;">
+
+                                            </div>
+                                            <!--<div class="development_level float-left button">-->
+                                            <!--<div class="dark-box-all float-left">-->
+                                            <!--<div class="table">-->
+                                            <!--<div class="cell font-14">-->
+                                            <!--Natural Calamities-->
+                                            <!--</div>-->
+                                            <!--</div>-->
+                                            <!--</div>-->
+                                            <!--</div>-->
+                                            <div class="menu_gap float-left">
+                                                <div class="table flexible-margin" style="height: 100px;">
+                                                    <div class="cell font-14"
+                                                        style="background-image: url('https://d3cyxgc836sqrt.cloudfront.net/images/website-game/resourceback.png'); background-repeat: no-repeat; background-size: 100%;">
+                                                        <div class="blocks bricks float-left">
+                                                            <div class="float-right inner-block val-top">
+                                                                <div class="value-container" data-type="earth">
+                                                                    0
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="blocks fish float-left">
+                                                            <div class="float-right inner-block val-top">
+                                                                <div class="value-container" data-type="lake">
+                                                                    0
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="blocks sheep float-left">
+                                                            <div class="float-right inner-block val-top">
+                                                                <div class="value-container" data-type="plain">
+                                                                    0
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="blocks wood float-left">
+                                                            <div class="float-right inner-block val-top">
+                                                                <div class="value-container" data-type="forest">
+                                                                    0
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="blocks grain float-left">
+                                                            <div class="float-right inner-block val-top">
+                                                                <div class="value-container" data-type="farm">
+                                                                    0
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="menu float-right" id="right-upper-menu"
+                                                style="margin-top: 12px;margin-left: 10px;height: 85px;width: 10%px;">
+                                                <div class="dark-box-all float-right">
+                                                    <div class="table">
+                                                        <div class="cell font-14">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="middle">
+                                <!-- <div class="tile-image" id="add-land-button"
+                                    style="margin-top: 20px;text-align: left;cursor: pointer;">
+                                    <img onclick="onClickAddLand()" src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/add.png"
+                                        style="width: 17vw; height: 17vw;margin-top: 30px;" />
+                                </div> -->
+                                <div class="middle-container" align="center">
+                                    <div class="tile-image" id="add-land-button" style="cursor: pointer">
+                                        <img onclick="onClickAddLand()" src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/add.png" style="width: 17vw; height: 17vw;margin-top:30;text-align:left">
+                                    </div>
+                                    <!-- <img id="leftMiddleArrow" class="leftMiddleArrow" src="images/arrow.png"
+                                    style="visibility: hidden;">
+                                <img id="rightMiddleArrow" class="rightMiddleArrow" src="images/arrow.png"
+                                    style="visibility: hidden;"> -->
+
+                                    <!-- <div style="width:17vw;" class="section" data-type="add" id="add-tile" data-is-busy="0">
+                            <div class="tile-image" style="position: relative; top:15%">
+                                <img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/add.png"
+                                    style="width: 17vw; height: 17vw" />
+                            </div>
+                            <div class="tile-name font-14" style="font-size: 2.4vw;top:27vh;">Add</div>
+                        </div> -->
+                                    <!--<div class="table">-->
+                                    <!--<div class="cell">-->
+                                    <!--<div class="section">-->
+                                    <!--<div style="height: 5%"></div>-->
+                                    <!--<div class="progress-bar">-->
+                                    <!--<div class="outer-loader">-->
+                                    <!--<div class="inner-loader"></div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-image" style="position: relative">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/forest.png" style="width: 20%; height: 20%"/>-->
+
+                                    <!--<div class="tile-image-content">-->
+                                    <!--<div class="table">-->
+                                    <!--<div class="cell font-14">-->
+                                    <!--60Cr-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-name font-14">-->
+                                    <!--Forest-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="section">-->
+                                    <!--<div style="height: 5%"></div>-->
+                                    <!--<div class="progress-bar">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/day_left_green.png" width="80%"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-image" style="position: relative">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/plains.png" width="60%"/>-->
+
+                                    <!--<div class="tile-image-content">-->
+                                    <!--<div class="table">-->
+                                    <!--<div class="cell">-->
+                                    <!--60Cr-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-name font-14">-->
+                                    <!--Plain-->
+                                    <!--</div>-->
+
+                                    <!--</div>-->
+                                    <!--<div class="section">-->
+                                    <!--<div style="height: 5%"></div>-->
+                                    <!--<div class="progress-bar">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/day_left_green.png" width="80%"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-image" style="position: relative">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/mine.png" width="60%"/>-->
+
+                                    <!--<div class="tile-image-content">-->
+                                    <!--<div class="table">-->
+                                    <!--<div class="cell">-->
+                                    <!--60Cr-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-name font-14">-->
+                                    <!--Mine-->
+                                    <!--</div>-->
+
+                                    <!--</div>-->
+                                    <!--<div class="section">-->
+                                    <!--<div style="height: 5%"></div>-->
+                                    <!--<div class="progress-bar">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/day_left_green.png" width="80%"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-image" style="position: relative">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/lake.png" width="60%"/>-->
+
+                                    <!--<div class="tile-image-content">-->
+                                    <!--<div class="table">-->
+                                    <!--<div class="cell">-->
+                                    <!--60Cr-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-name font-14">-->
+                                    <!--Lake-->
+                                    <!--</div>-->
+
+                                    <!--</div>-->
+                                    <!--<div class="section">-->
+                                    <!--<div style="height: 5%"></div>-->
+                                    <!--<div class="progress-bar">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/day_left_green.png" width="80%"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-image" style="position: relative">-->
+                                    <!--<img src="https://d3cyxgc836sqrt.cloudfront.net/images/website-game/earth.png" width="60%"/>-->
+
+                                    <!--<div class="tile-image-content">-->
+                                    <!--<div class="table">-->
+                                    <!--<div class="cell">-->
+                                    <!--60Cr-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="tile-name font-14">-->
+                                    <!--Earth-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+
+                            </div>
+                            <!--<div class="divider"></div>-->
+
+                            <div class="footer" style="margin-top: 0%;">
+
+                                <div style="height: 100%">
+                                    <div style="width: 20%;float: left">
+                                        <div class="table">
+                                            <div class="cell font-14 footer-detail" id="footer-detail-left">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="harvest_botton_wrapper"
+                                        style="height: 100%; width: 50%; float: left; padding-bottom: 20%; padding-left: 5%; padding-top: 3%;"
+                                        align="center">
+                                        <div class="tooltip_bottom" style="display: none;">
+                                            <span class="tooltiptext" style="color: black">Touch Here to open the
+                                                map</span>
+                                        </div>
+
+                                        <div class="btn_harvest" id="harvest-button">
+                                            <div class="table">
+                                                <div class="cell font-34">
+                                                    Harvest
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div style="width: 1%;float:left;">
+                                <div class="table">
+                                    <div class="cell">
+                                        <div class="vertical_divider">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                                    <div style="height: 100%; width: 17%; float: left; padding-bottom: 20%; padding-left: 5%; padding-top: 0.5%;"
+                                        align="center">
+                                        <div style="height: 70px;">
+                                            <div id="bottom_right_note" style="display: none;">Level 1 <br> Buy Land
+                                            </div>
+                                        </div>
+                                        <div id="dev-points" class="table" style="height: 100%;display: block;">
+                                            <div class="cell" style="margin-top: 0%;">
+
+                                                <div style="width: 100%;height: 100%;margin: 0 auto">
+
+                                                    <div class="table">
+                                                        <div class="cell font-14" style="vertical-align: middle;">
+                                                            <div class="harvest_level"
+                                                                style="margin-top: 0%;display: none;background-image: url('images/upgrade.png'); background-repeat: no-repeat; background-size: 100% 100%;">
+                                                                <div class="float-left"
+                                                                    style="width: 100%;height: 100%">
+                                                                    <div class="table">
+                                                                        <div class="cell font-14">
+                                                                            <!-- Upgrade -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- <div style="height: 40%">
+                                        <div class="table">
+                                            <div class="cell">
+                                                <div class="font-14">
+                                                    Cost: 5 Dev Points
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    </div>
+                                    <div style="height: 100%; width: 17%; float: left; padding-bottom: 20%; padding-left: 5%; padding-top: 0.5%; display:none"
+                                        id="eradicate-calamity">
+                                        <div class="table" style="height: 100%">
+                                            <div class="cell" style="margin-top: 0%">
+                                                <div style="width: 100%;height: 100%;margin: 0 auto">
+                                                    <div class="table">
+                                                        <div class="cell font-14">
+                                                            <div class="eradicate"
+                                                                style="margin-top: 0%; background-image: url(https://d3cyxgc836sqrt.cloudfront.net/images/website-game/revive.png); background-repeat: no-repeat; background-size: 100% 100%;">
+                                                                <div class="float-left"
+                                                                    style="width: 100%;height: 100%">
+                                                                    <div class="table">
+                                                                        <div class="cell font-14">
+                                                                            <!-- Erdicate Disaster -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- <div style="height: 40%">
+                                <div class="table">
+                                    <div class="cell">
+                                        <div class="font-14">
+                                            Cost: 2 Dev Points
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                                    </div>
+                                    <div style="clear: both"></div>
+                                </div>
+
+                            </div>
+                            <div id="bank-trading" class="offerPopupKeyur" style="display: none">
+                                <div class="trading-container">
+                                    <div class="left-menu float-left">
+                                        <div class="menu-section1" id="trading-section0" data-type="home">
+
+                                        </div>
+                                        <div class="menu-section active" id="trading-section1" data-type="market">
+
+                                            <div class="cell font-14">
+                                                Market
+                                            </div>
+
+                                        </div>
+                                        <div class="menu-section" id="trading-section2" data-type="trade">
+
+                                            <div class="cell font-14">
+                                                Trade
+                                            </div>
+
+                                        </div>
+                                        <div class="menu-section" id="trading-section3" data-type="my-harvest">
+
+                                            <div class="cell font-14">
+                                                Inventory
+                                            </div>
+
+                                        </div>
+                                        <div class="menu-section" id="trading-section4" data-type="my-deliveries">
+
+                                            <div class="cell font-14">
+                                                Deliveries
+                                            </div>
+
+                                        </div>
+                                        <div class="menu-section" id="trading-section5" data-type="get-crobs">
+
+                                            <div class="cell font-14">
+                                                CROB
+                                            </div>
+
+                                        </div>
+                                        <div class="menu-section" id="trading-section6" data-type="transfer-credit">
+
+                                            <div class="cell font-14">
+                                                Fund Transfer
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="right-container float-left" id="right-container" align="center">
+
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="offerPopupKeyur1" id="trading-popup" style="display: none">
+                                        <div class="table">
+                                            <div class="cell">
+                                                <div class="outer">
+                                                    <div class="table">
+                                                        <div class="cell">
+                                                            <div class="inner">
+                                                                <div class="header-menu-offer">
+                                                                    <div class="headerText font-18" id="popup-text">
+                                                                        OFFER
+                                                                    </div>
+                                                                    <div style="height: 5%"></div>
+                                                                    <div class="popup-container" id="popup-container"
+                                                                        align="center">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="closeButton">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pauseGameOverlay" id="pauseGameOverlay"
+                                style="display: none;background: rgba(0,0,0,0.8);">
+                                <div class="table">
+                                    <div class="cell">Game Paused</div>
+                                </div>
+                            </div>
+
+                            <div class="disconnectOverlay" id="disconnectedOverlay"
+                                style="display: none;background: rgba(0,0,0,0.8);">
+                                <div class="table">
+                                    <div class="cell">
+                                        <div>Your ERM device has failed due to supercharged electromagnetic fields</div>
+                                        <div style="height: 5%"></div>
+                                        <div>Your device will reconnect as soon as the field becomes demagnetized</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                document.addEventListener('deviceready', function ()
+                                {
+                                    //Keep Awake
+                                    if (window.plugins.insomnia)
+                                    {
+                                        window.plugins.insomnia.keepAwake()
+                                    }
+
+                                    //Hide Status Bar
+                                    if (window.plugins.StatusBar)
+                                    {
+                                        StatusBar.hide();
+
+                                    }
+
+                                    // Assuming the Status Bar exist
+                                // Assuming the Status Bar exist
+                                    // Assuming the Status Bar exist
+                                    $("body").on("blur.app", "input", StatusBar.hide);
+
+                                    document.addEventListener('backbutton', function ()
+                                    {
+                                        // console.log('back');
+                                        //            navigator.notification.confirm(
+                                        //                    'Do you want to exit?', // message
+                                        //                    confirmExit, // callback
+                                        //                    'Exit', // title
+                                        //                    'No,Yes' // buttonName
+                                        //            );
+                                    });
+                                    //        function confirmExit(button)
+                                    //        {
+                                    //            if(button == '2')
+                                    //            {
+                                    //                navigator.appexit.dismissApp();
+                                    //            }
+                                    //        }
+                                });
+                //console.log(localStorage.ipAddress);
+                    // document.getElementById("st_code").value = (typeof localStorage.ipAddress == "undefined" ? "" : localStorage.ipAddress);
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <script>
+            function init()
+            {
+            }
+            $(window).on('load', function ()
+            {
+                $('#loadingScreen').hide();
+                $('#options').show();
+            });
+        </script>
+        <script>
+            function onClickLetsGod()
+            {
+                $("#letsGoModal").css("display", "none")
+                $('body').css("background-image", "none")
+                $("#game_body").css("display", "block")
+                $("#tutorialVideo").css("display", "none")
+                $("#mainGameModal").css("display", "block")
+                $(document).ready(function ()
+                {
+                });
+            }
+            function onClickOk()
+            {
+                $("#main_tooltip").css("display", "block")
+                $("#hand").css("display", "block")
+                $("#mainGameModal").css("display", "none")
+                $("#bottom_right_note").css("display", "block")
+
+            }
+            function onClickOk2()
+            {
+                $("#harvestModal").css("display", "none");
+                $("#main_tooltip .tooltip_bottom").css({
+                    top: "20%",
+                    left: "0%",
+                    display: "block",
+                });
+                $("#bottom_right_note").css("display", "block")
+                $("#bottom_right_note").html("Level 2 <br/> Harvest your land");
+                $("#hand").css({ top: "49%", left: "14%", display: "block" });
+            }
+        //Darshan's video function replaced by Mohsin's because it has video skip and video end conditions
+        // var handle = setInterval(function ()
+        // {
+        //     var vid = document.getElementById("tutorialVideo");
+        //     if (vid.ended)
+        //     {
+        //         $("#letsGoModal").css("display", "none")
+        //         $("#game_body").css("display", "block")
+        //         tutorialVideo.pause();
+        //         $("#tutorialVideo").css("display", "none")
+        //         $("#mainGameModal").css("display", "block")
+        //         $('#skipIntro').hide();
+        //         $('#unmute').hide();
+        //         $('#mute').hide();
+        //         clearInterval(handle);
+        //     }
+        // }, 1000);
+        </script>
+
+        <script type='text/javascript'>
+            var tutorialVideo = document.getElementById('tutorialVideo');
+
+            tutorialVideo.addEventListener('ended', closeIntro, false);
+            function closeIntro(e)
+            {
+                $("#letsGoModal").css("display", "none")
+                $("#game_body").css("display", "block")
+                tutorialVideo.pause();
+                $("#tutorialVideo").css("display", "none")
+                $("#mainGameModal").css("display", "block")
+                $('#skipIntro').hide();
+                $('#unmute').hide();
+                $('#mute').hide();
+            }
+
+            function unmute(e)
+            {
+                tutorialVideo.muted = false;
+                $('#unmute').hide();
+                $('#mute').show();
+            }
+
+            function mute(e)
+            {
+                tutorialVideo.muted = true;
+                $('#mute').hide();
+                $('#unmute').show();
+            }
+        </script>
+    </div>
+</body>
+
+</html>

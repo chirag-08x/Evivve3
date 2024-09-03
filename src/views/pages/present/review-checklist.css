@@ -1,0 +1,75 @@
+.rc-background {
+    z-index: 1000;
+    position: fixed;
+    top: 0px; left: 0px;
+    right: 0px; bottom: 0px;
+    background: rgba(0,0,0,0.4);
+}
+
+.rc-popup {
+    z-index: 1100;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    margin: auto auto;
+    width: 600px;
+    height: fit-content;
+    padding: 40px;
+    border-radius: 20px;
+    border: 5px solid #786791;
+    background: #341A5A;
+    color: #E8C490;
+}
+
+.rc-popup-head {
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 26px;
+}
+
+.rc-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.rc-body {
+    margin: 50px 0px 40px 0px;
+}
+
+.rc-checkbox-section {
+    padding: 10px;
+    border: 2px solid #786791;
+    border-bottom: 0px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rc-checkbox-section:last-child {
+    border-bottom: 2px solid #786791;
+}
+
+.rc-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.rc-sub-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.rc-checkbox-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}

@@ -1,0 +1,29 @@
+/* Set the toast container to always appear at the bottom left */
+.Toastify__toast-container {
+    
+     
+    left: 100px; /* 100px from the left edge */
+  
+  }
+  /* Set a white background for all toasts */
+  .Toastify__toast {
+    background-color: #fff; /* White background */
+    color: #333; /* Text color for better readability on white */
+  }
+  /* Customize the progress bar color for each toast type */
+  /* Success progress bar */
+  .Toastify__toast--success .Toastify__progress-bar {
+    background: #45946E; /* Green progress bar for success */
+  }
+  /* Error progress bar */
+  .Toastify__toast--error .Toastify__progress-bar {
+    background: #953D2E; /* Red progress bar for error */
+  }
+  /* Warning progress bar */
+  .Toastify__toast--warning .Toastify__progress-bar {
+    background: #b6a12e; /* Yellow progress bar for warning */
+  }
+  /* Info progress bar */
+  .Toastify__toast--info .Toastify__progress-bar {
+    background: #3A88B4; /* Blue progress bar for info */
+  }

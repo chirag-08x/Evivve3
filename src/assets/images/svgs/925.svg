@@ -1,0 +1,21 @@
+<svg width="65" height="58" viewBox="0 0 65 58" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect x="19.0303" y="19" width="25.0392" height="20" rx="1" fill="#341A5A"/>
+<rect x="20.7832" y="20.75" width="21.5329" height="4.5" rx="0.75" fill="#341A5A" stroke="white" stroke-width="0.5"/>
+<ellipse cx="22.5355" cy="22.5" rx="0.500392" ry="0.5" fill="white"/>
+<ellipse cx="24.5385" cy="22.5" rx="0.500392" ry="0.5" fill="white"/>
+<ellipse cx="26.5414" cy="22.5" rx="0.500392" ry="0.5" fill="white"/>
+<ellipse cx="32.0505" cy="37" rx="7.01096" ry="7" fill="white"/>
+<rect x="26" y="32" width="12" height="12" fill="url(#pattern0_9404_23775)"/>
+<path d="M29.0459 23H34.2705" stroke="white" stroke-linecap="round"/>
+<rect x="1.5" y="1.5" width="61.1002" height="55" rx="10.5" stroke="url(#paint0_linear_9404_23775)" stroke-opacity="0.5" stroke-width="3"/>
+<defs>
+<pattern id="pattern0_9404_23775" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_9404_23775" transform="scale(0.01)"/>
+</pattern>
+<linearGradient id="paint0_linear_9404_23775" x1="32.0501" y1="0" x2="32.0501" y2="58" gradientUnits="userSpaceOnUse">
+<stop stop-color="#724A9C"/>
+<stop offset="1" stop-color="#192760"/>
+</linearGradient>
+<image id="image0_9404_23775" width="100" height="100" xlink:href="data:image/png;base64,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"/>
+</defs>
+</svg>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<head>
+
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width;" />
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+    img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+    style-src  'self' 'unsafe-inline' *">
+
+    <title>Evivve - Simulation</title>
+    <meta name="description" content="A leadership and workplace collaboration skill development game. "/>
+    <meta name="keywords" content="facilitation, game, game based learning, learning, elearning, gamification, learning, games for learning, collaboration training, training game, games for collaboration, leadership game">
+    <meta name="author" content="Gamitar Learning">
+    <meta name="twitter:card" content= "summary_large_image"/>
+    <meta name="twitter:title" content="Evivve - The Leadership Game" />
+    <meta name="twitter:description" content="Evivve - The Leadership Game. Behavioral science, cognitive capacity and game design"/>
+    <meta name="twitter:image" content="summary_large_image"/>
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
+
+    <link href="css/android_toast.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/socket.io.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/interactions.js"></script>
+    <script type="text/javascript" src="js/android_toast.min.js"></script>
+    <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+    <script>
+        $('document').ready(() => {
+            const searchParams = new URLSearchParams(window.location.search);
+
+            if(searchParams.get("redirect") === "game"){
+                onClickLetsGod();
+            }
+            if(searchParams.get("redirect") === "about"){
+                document.getElementsByClassName("lets_go_and_try")[0].innerHTML = "Try It Now"
+            }
+
+            document.getElementById("single_player_code").value = searchParams.get("code");
+
+            // Use JWT to verify the player
+            verifyLearnerActivationPlayer();
+        })
+    </script>
+    <style>
+        .switch_landscape {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @media screen and (orientation:portrait) {
+            #container {
+                display: none;
+            }
+        }
+
+        @media screen and (orientation:landscape) {
+            #container {
+                display: block;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            .switch_landscape {
+                display: none;
+            }
+        }
+    </style>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i)
+    {
+        w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PZPT8TB');</script>
+    <!-- End Google Tag Manager -->
+
+</head>
+<body>
+
+<div style="position:relative; height: 15%;">
+    <div style="display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5em;">
+        <input placeholder="Enter code" class="font-16 input-text" type="number" id="single_player_code"
+               style="width: 20%">
+        <input placeholder="Enter nickname" class="font-16 input-text" type="text" id="nickname"
+               style="width: 20%">
+
+    </div>
+    <div style="display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5em;">
+        <input placeholder="Enter First Name" class="font-16 input-text" type="text" id="first_name"
+               style="width: 20%">
+        <input placeholder="Enter Last name" class="font-16 input-text" type="text" id="last_name"
+               style="width: 20%">
+
+    </div>
+
+    <div style="display: flex;justify-content: center;margin-top: 100;margin-bottom: 100;">
+        <div id="initiate-btn" class="" style="width: 300px;margin-left: 30px; ">
+            <div>
+                <div onclick="onClickSubmitPlayerDetails()" class="btn-initiate play">
+                    SUBMIT
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.766406" y="2.81719" width="13.4096" height="16.3625" rx="1.11562" fill="white" stroke="black" stroke-width="0.74375"/>
+<rect x="1.88477" y="3.92969" width="11.1737" height="14.1312" rx="0.74375" fill="black"/>
+<path d="M4.11914 7.64844L10.8234 7.64844" stroke="white" stroke-width="0.74375" stroke-linecap="round"/>
+<path d="M4.11914 9.14062H7.0988" stroke="white" stroke-width="0.74375" stroke-linecap="round"/>
+<path d="M4.11914 10.625L9.33354 10.625" stroke="white" stroke-width="0.74375" stroke-linecap="round"/>
+<rect x="5.0502" y="1.14297" width="4.84253" height="3.34687" rx="0.557812" fill="black" stroke="white" stroke-width="0.371875"/>
+<path d="M18.7826 16.0044C14.6595 10.3925 10.4961 13.5109 8.75153 16.0014C8.65033 16.1458 8.65539 16.3426 8.75637 16.4873C12.9351 22.472 17.0818 19.1359 18.8013 16.4858C18.8964 16.3392 18.8861 16.1453 18.7826 16.0044Z" fill="black" stroke="white" stroke-width="0.734568" stroke-linecap="round"/>
+<path d="M13.7397 17.7772C14.5442 17.7772 15.0631 17.057 15.0631 16.3448C15.0631 15.6325 14.5442 14.9123 13.7397 14.9123C12.9352 14.9123 12.4163 15.6325 12.4163 16.3448C12.4163 17.057 12.9352 17.7772 13.7397 17.7772Z" fill="black" stroke="white" stroke-width="1.17531"/>
+</svg>

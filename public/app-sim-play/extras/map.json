@@ -1,0 +1,260 @@
+{
+    "lane1": [
+        {
+            "forest": 40,
+            "class-name": "trans-tile-top-single"
+        },
+        {
+            "plain": 20,
+            "class-name": "trans-tile-top-single"
+        },
+        {
+            "farm": 20,
+            "class-name": "trans-tile-top-single"
+        },
+        {
+            "lake": 40,
+            "class-name": "trans-tile-top-single"
+        },
+        {
+            "earth": 60,
+            "class-name": "trans-tile-top-single"
+        },
+        {
+            "forest": 20,
+            "class-name": "trans-tile-top-single"
+        },
+        {
+            "plain": 40,
+            "class-name": "trans-tile-top-single"
+        }
+    ],
+    "lane2": [
+        {
+            "forest": 60,
+            "farm": 60,
+            "class-name": "trans-tile-left-double"
+        },
+        {
+            "plain": 20,
+            "forest": 40,
+            "earth": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "farm": 20,
+            "plain": 20,
+            "lake": 40,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "lake": 40,
+            "farm": 20,
+            "forest": 60,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "earth": 60,
+            "lake": 40,
+            "plain": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "forest": 20,
+            "earth": 60,
+            "lake": 60,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "plain": 40,
+            "forest": 20,
+            "earth": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "plain": 40,
+            "class-name": "trans-tile-right-single"
+        }
+    ],
+    "lane3": [
+        {
+            "farm": 60,
+            "class-name": "trans-tile-left-single"
+        },
+        {
+            "farm": 60,
+            "mine": 1000,
+            "earth": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "earth": 20,
+            "forest": 20,
+            "lake": 40,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "lake": 40,
+            "earth": 40,
+            "forest": 60,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "mine": 1000,
+            "forest": 60,
+            "plain": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "plain": 20,
+            "farm": 20,
+            "lake": 60,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "lake": 60,
+            "forest": 40,
+            "earth": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "earth": 20,
+            "mine": 1000,
+            "class-name": "trans-tile-right-double"
+        }
+    ],
+    "lane4": [
+        {
+            "mine": 1000,
+            "lake": 20,
+            "class-name": "trans-tile-left-double"
+        },
+        {
+            "plain": 60,
+            "mine": 1000,
+            "forest": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "earth": 40,
+            "forest": 20,
+            "farm": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "lake": 20,
+            "earth": 40,
+            "mine": 1000,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "mine": 1000,
+            "forest": 60,
+            "farm": 40,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "forest": 40,
+            "farm": 40,
+            "earth": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "mine": 1000,
+            "forest": 40,
+            "plain": 40,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "mine": 1000,
+            "class-name": "trans-tile-right-single"
+        }
+    ],
+    "lane5": [
+        {
+            "lake": 20,
+            "class-name": "trans-tile-left-single"
+        },
+        {
+            "plain": 60,
+            "lake": 20,
+            "earth": 40,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "plain": 60,
+            "forest": 20,
+            "farm": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "lake": 20,
+            "farm": 20,
+            "plain": 40,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "lake": 20,
+            "forest": 60,
+            "farm": 60,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "forest": 60,
+            "lake": 40,
+            "earth": 20,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "earth": 20,
+            "forest": 20,
+            "plain": 40,
+            "class-name": "trans-tile-middle"
+        },
+        {
+            "plain": 40,
+            "farm": 40,
+            "class-name": "trans-tile-right-double"
+        }
+    ],
+    "lane6": [
+        {
+            "earth": 40,
+            "class-name": "trans-tile-left-single"
+        },
+        {
+            "forest": 20,
+            "earth": 40,
+            "class-name": "trans-tile-bottom-double"
+        },
+        {
+            "plain": 40,
+            "forest": 20,
+            "class-name": "trans-tile-bottom-double"
+        },
+        {
+            "farm": 60,
+            "plain": 40,
+            "class-name": "trans-tile-bottom-double"
+        },
+        {
+            "lake": 40,
+            "farm": 60,
+            "class-name": "trans-tile-bottom-double"
+        },
+        {
+            "forest": 20,
+            "lake": 40,
+            "class-name": "trans-tile-bottom-double"
+        },
+        {
+            "forest": 20,
+            "farm": 40,
+            "class-name": "trans-tile-bottom-double"
+        },
+        {
+            "farm": 40,
+            "class-name": "trans-tile-right-single"
+        }
+    ]
+}
